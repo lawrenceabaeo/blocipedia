@@ -54,3 +54,5 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'figaro'
 
 gem 'purecss-rails'
+
+gem 'rails_12factor'
