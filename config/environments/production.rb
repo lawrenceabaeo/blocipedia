@@ -77,4 +77,7 @@ Blocipedia::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # http://lawrence-blocipedia.herokuapp.com
+  config.action_mailer.default_url_options = { :host => 'lawrence-blocipedia.herokuapp.com'}
 end
