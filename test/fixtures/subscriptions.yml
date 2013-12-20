@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  plan_id: 1
+  stripe_customer_token: MyString
+  user_id: 
+
+two:
+  plan_id: 1
+  stripe_customer_token: MyString
+  user_id: 
