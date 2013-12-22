@@ -8,8 +8,7 @@ class SubscriptionsController < ApplicationController
     # @subscription = Subscription.new(params[:subscription]) # this appears to only work in rails < 4
     # http://stackoverflow.com/questions/17335329/activemodelforbiddenattributeserror-when-creating-new-user
     @subscription = Subscription.new(subscription_params)
-    @subscription.user_id = current_user.id
-    if @subscription.save_with_payment
+    if @subscription.save_with_payment(current_user)
       redirect_to @subscription, :notice => "Thank you for subscribing!"
     else
       render :new
@@ -23,6 +22,6 @@ class SubscriptionsController < ApplicationController
   private
   
   def subscription_params
-    params.require(:subscription).permit(:plan_id, :stripe_customer_token, :user_id)
+    params.require(:subscription).permit(:plan_id, :stripe_card_token, :user_id)
   end
 end
