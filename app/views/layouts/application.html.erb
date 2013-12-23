@@ -12,40 +12,48 @@
 
 <body>
   
-  <div class="container">
-
-    <ul class="nav nav-tabs">
-      <li><%= link_to "Blocipedia", root_path %></li>
-
-      <div class="pull-right user-info">
+  <div class="pure-g">
+    <div id="top-nav-bar" class="pure-u-1-1 nav-bar">
+      <ul class="nav-bar">
+        <li><%= link_to "Blocipedia", root_path %>&nbsp;</li>
         <% if current_user %>
           Hello <%= link_to (current_user.name || current_user.email), edit_user_registration_path %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
         <% else %>
-          <%= link_to "Sign In", new_user_session_path %> or
+          <li><%= link_to "Sign In", new_user_session_path %> or
           <%= link_to "Sign Up", new_user_registration_path %>
-        <% end %>
-      </div>
-    </ul>
-
+        <% end %></li>
+      </ul>
+    </div>
 
     <% if flash[:notice] %>
-      <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <%= flash[:notice] %>
+      <div class="pure-u-1-1">
+        <!-- <div class="alert alert-success"> -->
+        <div>
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= flash[:notice] %>
+        </div>
       </div>
     <% elsif flash[:error] %>
-      <div class="alert alert-error">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <%= flash[:error] %>
+      <div class="pure-u-1-1">
+        <!-- <div class="alert alert-error"> -->
+        <div>
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= flash[:error] %>
+        </div>
       </div>
     <% elsif flash[:alert] %>
-      <div class="alert">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <%= flash[:alert] %>
+      <div class="pure-u-1-1">
+        <!-- <div class="alert pure-u-1-1"> -->
+        <div>
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= flash[:alert] %>
+        </div>
       </div>
     <% end %>
     
-    <%= yield %>
+    <div class="pure-u-1-1">
+      <%= yield %>
+    </div>
   
   </div>
 </body>

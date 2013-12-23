@@ -1,3 +1,22 @@
+/* purecss has problems with fonts for .pure-g and .pure-g-r */
+/* https://github.com/yui/pure/issues/41/ */
+.pure-g, .pure-g-r {
+    letter-spacing: 0em;
+}
+
+#top-nav-bar {
+    margin: 0 10px 0 auto;
+    border: 1px solid red;
+}
+
+
+.nav-bar ul {
+    list-style-type: none;
+}
+
+.nav-bar li {
+    display: inline;
+}
 
 
 /************************************************/
