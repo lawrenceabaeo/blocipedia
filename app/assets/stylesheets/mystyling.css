@@ -4,13 +4,18 @@
     letter-spacing: 0em;
 }
 
+
+
+/* -- Top Nav Bar styling -- */
 #top-nav-bar {
-    margin: 0 10px 0 auto;
-    border: 1px solid red;
+    width: 100%;
+    margin-right: 5px;
+    margin-bottom: 5px;
 }
 
-
 .nav-bar ul {
+    margin: 0 10px 0 auto;
+    float: right;
     list-style-type: none;
 }
 
@@ -19,57 +24,55 @@
 }
 
 
-/************************************************/
-/* The below is adapted from the purecss pricing layout */
-/*
- * -- PRICING TABLE WRAPPER --
- * This element wraps up all the pricing table elements
- */
- .my-pricing-tables,
- .information {
-    max-width: 980px;
-    margin: 0 auto;
- }
-.my-pricing-tables {
-    margin-bottom: 3.125em;
+/* -- Welcome Page styling -- */
+banner {
+    margin-top: 150px;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    background: #0D777D;
+    text-align: center;    
+}
+
+.banner-head {
+    margin-top: 0;
+    color: white;
+    font-weight: 500;
+    text-shadow: 0 1px 1px black;
+}
+
+.pricing-tables {
     text-align: center;
 }
 
-/*
- * -- PRICING TABLE  --
- * Every pricing table has the .my-pricing-table class
- */
-.my-pricing-table {
-    border: 1px solid #ddd;
-    margin: 0 0.5em;
-    padding: 0 0 3em;
+.l-content {
+    margin: 0 auto;
 }
 
-/*
- * -- PRICING TABLE HEADER COLORS --
- * Choose a different color based on the type of pricing table.
- */
-.my-pricing-table-free .my-pricing-table-header {
-    background: #519251;
+
+/* Alerts, adpated from: */ 
+/*http://www.dzone.com/snippets/css-flashnotice-style*/
+
+.alert {
+    width: 100%;
+    border: 1px solid red;
+    background: #FFF6BF;
+    border-top: 2px solid #FFD324;
+    border-bottom: 2px solid #FFD324;
+    text-align: center;
+    margin: 10px auto;
+    padding: 5px 20px;
 }
 
-.my-pricing-table-biz .my-pricing-table-header {
-    background: #2c4985;
+/* -- Form -- */
+.bloccipedia-form {
+    /*border: 1px solid red;*/
+    margin: 50px auto 0 auto;
 }
 
-/*
- * -- PRICING TABLE HEADER --
- * By default, a header is black/white, and has some styles for its <h2> name.
- */
-.my-pricing-table-header {
-    background: #111;
-    color: #fff;
+.devise-links {
+    /*border: 1px solid red;*/
+    margin-top: 20px;
+    font-size: small;
 }
 
-.my-pricing-table-header h2 {
-    margin: 0;
-    padding-top: 2em;
-    font-size: 1em;
-    font-weight: normal;
-
-}

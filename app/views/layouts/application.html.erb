@@ -12,49 +12,45 @@
 
 <body>
   
-  <div class="pure-g">
+  <div class="pure-g-r">
+    
     <div id="top-nav-bar" class="pure-u-1-1 nav-bar">
       <ul class="nav-bar">
-        <li><%= link_to "Blocipedia", root_path %>&nbsp;</li>
+        <li><%= link_to "Blocipedia", root_path %></li>
         <% if current_user %>
-          Hello <%= link_to (current_user.name || current_user.email), edit_user_registration_path %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+          <li>Hello <%= link_to (current_user.name || current_user.email), edit_user_registration_path %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
         <% else %>
-          <li><%= link_to "Sign In", new_user_session_path %> or
-          <%= link_to "Sign Up", new_user_registration_path %>
-        <% end %></li>
+          <li><%= link_to "Sign In", new_user_session_path %> or </li>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <% end %>
       </ul>
     </div>
 
     <% if flash[:notice] %>
-      <div class="pure-u-1-1">
-        <!-- <div class="alert alert-success"> -->
-        <div>
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <%= flash[:notice] %>
+        <div class="alert pure-u-1-1">
+          <div>
+            <%= flash[:notice] %>
+          </div>
         </div>
       </div>
+
     <% elsif flash[:error] %>
-      <div class="pure-u-1-1">
-        <!-- <div class="alert alert-error"> -->
-        <div>
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <%= flash[:error] %>
+      <div class="alert pure-u-1-1">
+        <div class="alert">
+          <div>
+            <%= flash[:error] %>
+          </div>
         </div>
       </div>
+
     <% elsif flash[:alert] %>
-      <div class="pure-u-1-1">
-        <!-- <div class="alert pure-u-1-1"> -->
-        <div>
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <%= flash[:alert] %>
-        </div>
+      <div class="alert pure-u-1-1">
+        <%= flash[:alert] %>
       </div>
     <% end %>
     
-    <div class="pure-u-1-1">
-      <%= yield %>
-    </div>
-  
+    <%= yield %>
+    
   </div>
 </body>
 </html>
