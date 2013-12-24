@@ -50,12 +50,11 @@ banner {
 }
 
 
-/* Alerts, adpated from: */ 
+/* For flash messages, adpated from: */ 
 /*http://www.dzone.com/snippets/css-flashnotice-style*/
 
 .alert {
     width: 100%;
-    border: 1px solid red;
     background: #FFF6BF;
     border-top: 2px solid #FFD324;
     border-bottom: 2px solid #FFD324;
@@ -64,14 +63,38 @@ banner {
     padding: 5px 20px;
 }
 
+#error_explanation { /* for devise errors */
+    width: 100%;
+    background: #FFF6BF;
+    border-top: 2px solid #FFD324;
+    border-bottom: 2px solid #FFD324;
+    text-align: center;
+    padding: 0px 20px;   
+}
+
+#error_explanation ul {
+    list-style-position: inside; /* this makes the bullet point stick to text */
+}
+
+/*http://stackoverflow.com/questions/18307376/ruby-on-rails-and-bootstrap-make-field-with-errors-display-horizontal*/
+.field_with_errors {
+    display: inline-block;
+}
+
+.field_with_errors #user_email { /* not sure why I can't target input element witin a div that has .field_with_errors class */
+    border: 1px solid #f00;
+}
+
+.field_with_errors #user_password {
+    border: 1px solid #f00;
+}
+
 /* -- Form -- */
 .bloccipedia-form {
-    /*border: 1px solid red;*/
     margin: 50px auto 0 auto;
 }
 
 .devise-links {
-    /*border: 1px solid red;*/
     margin-top: 20px;
     font-size: small;
 }
