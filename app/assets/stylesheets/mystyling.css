@@ -89,6 +89,22 @@ banner {
     border: 1px solid #f00;
 }
 
+.field_with_errors #user_current_password {
+    border: 1px solid #f00;
+}
+
+
+.pure-form-aligned .pure-control-group p { /* I had to create this to handle the note in the edit profile form */
+    text-align: right;
+    display: inline-block;
+    font-size: 80%;
+    font-style: italic;
+    vertical-align: middle;
+    width: 12em;
+    margin: 0 1em 0 0;
+}
+
+
 /* -- Form -- */
 .bloccipedia-form {
     margin: 50px auto 0 auto;
