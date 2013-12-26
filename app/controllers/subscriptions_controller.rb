@@ -1,10 +1,17 @@
 class SubscriptionsController < ApplicationController
   def new
-    # authorize! :read, @subscription, message: "To subscribe to our Premium Service, sign up and confirm your email address!"
-    authorize! :read, Subscription, message: "To subscribe to our Premium Service, sign up and confirm your email address!"
-
-    plan = Plan.find(1) # Hardcoding this for now, since only one plan
-    @subscription = plan.subscriptions.build
+    if (current_user)
+      if (current_user.role == 'premium')
+        # TODO: update redirect to premium user's wiki home page with a thank you alert
+        redirect_to root_path, :notice => "You're already a subscriber!"
+      else
+        plan = Plan.find(1) # Hardcoding this for now, since only one plan
+        @subscription = plan.subscriptions.build
+      end
+    else # user is not logged in
+      # authorize! :read, Subscription, message: "To subscribe to our Premium Service, sign up and confirm your email address!"
+      redirect_to new_user_registration_path, :alert => "To subscribe to our Premium Service, sign up and confirm your email address!"
+    end
   end
 
   def create
