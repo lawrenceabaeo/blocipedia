@@ -34,4 +34,7 @@ class SubscriptionsController < ApplicationController
   def subscription_params
     params.require(:subscription).permit(:plan_id, :stripe_card_token, :user_id)
   end
+
+  def index
+  end
 end

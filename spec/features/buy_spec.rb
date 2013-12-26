@@ -30,8 +30,8 @@ describe 'Buying Premium' do
         fill_in 'card_code', with: "123"
         select '7 - July', from: "card_month"
         select  '2015', from: "card_year"
-        # click_button 'Subscribe' # Need to figure out how to use javascript in our headless vagrant environment
-        # page.should have_content('Thank you for subscribing!') 
+        click_button 'Subscribe' # Need to figure out how to use javascript in our headless vagrant environment
+        page.should have_content('Thank you for subscribing!') 
       end
     end
 
