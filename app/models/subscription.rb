@@ -12,9 +12,12 @@ class Subscription < ActiveRecord::Base
     if valid?
       email = user.email
       puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-      puts self.stripe_card_token
+      puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+      puts "The self.stripe_card_token is: #{self.stripe_card_token}"
       customer = Stripe::Customer.create(description: email, plan: plan_id, card: stripe_card_token)
+      puts "The customer.inspect output is: " 
       puts customer.inspect
+      puts "AFFER the customer.inspect output"
       puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
       puts "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"  
       self.stripe_customer_token = customer.id
