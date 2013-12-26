@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+first_plan = Plan.create(name: "Five Dollars A Month", price: 5.00)
+puts "The first plan was created. "
+puts "The plan id is: #{first_plan[:id]}"
