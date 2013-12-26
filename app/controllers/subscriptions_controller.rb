@@ -1,6 +1,8 @@
 class SubscriptionsController < ApplicationController
   def new
-    authorize! :read, @subscription, message: "To order our Premium Service, make sure you sign up and confirm your email address!"
+    # authorize! :read, @subscription, message: "To subscribe to our Premium Service, sign up and confirm your email address!"
+    authorize! :read, Subscription, message: "To subscribe to our Premium Service, sign up and confirm your email address!"
+
     plan = Plan.find(1) # Hardcoding this for now, since only one plan
     @subscription = plan.subscriptions.build
   end

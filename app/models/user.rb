@@ -5,4 +5,18 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_one :subscription
+
+  ROLES = %w[member collaborator owner]
+  def role?(base_role)
+    role.nil? ? false : ROLES.index(base_role.to_s) <= ROLES.index(role)
+  end
+
+  before_create :set_member
+
+  private
+
+  def set_member
+    self.role = 'member'
+  end
+
 end
