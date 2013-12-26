@@ -66,3 +66,5 @@ gem 'purecss-rails'
 gem 'rails_12factor'
 
 gem 'devise'
+
+gem 'cancan'
