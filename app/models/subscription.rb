@@ -3,9 +3,10 @@ class Subscription < ActiveRecord::Base
   belongs_to :user
   validates :plan_id, presence: true
   validates :user_id, presence: true
-  
 
   attr_accessor :stripe_card_token
+
+  after_create :update_user
 
   def save_with_payment(user)
     self.user_id = user.id
@@ -23,8 +24,17 @@ class Subscription < ActiveRecord::Base
       self.stripe_customer_token = customer.id
       save!
   end
+  
   rescue Stripe::InvalidRequestError => e
     logger.error "Stripe error while creating customer: #{e.message}"
     errors.add :base, "There was a problem with your credit card."
   end
+
+  private
+
+  def update_user
+    user = User.find(self.user_id)
+    user.update_attribute(:role, 'premium')
+  end
+
 end

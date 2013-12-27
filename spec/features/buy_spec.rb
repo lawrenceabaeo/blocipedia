@@ -17,7 +17,7 @@ describe 'Buying Premium' do
     end
 
     context 'when logged-in but not Premium' do 
-      it 'shows the ordering page' do
+      it 'lets user order' do
         user = create(:user)
         click_on 'Sign In'
         fill_in 'Email', with: user[:email]
@@ -31,7 +31,11 @@ describe 'Buying Premium' do
         select '7 - July', from: "card_month"
         select  '2015', from: "card_year"
         click_button 'Subscribe' # Need to figure out how to use javascript in our headless vagrant environment
-        page.should have_content('Thank you for subscribing!') 
+        page.should have_content('Thank you for subscribing!')
+        click_on 'Blocipedia'
+        click_on 'Premium Plan'
+        page.should have_content("You're already a subscriber!")
+        # page.should have_content("Totes Magotes!") # NOTE: Intentionally making this fail so that I will remember to implement the wiki page with the thanks notice. 
       end
     end
 
@@ -45,8 +49,7 @@ describe 'Buying Premium' do
         click_button 'Sign in'
         page.should have_content('Signed in successfully.')
         click_on 'Premium Plan'
-        page.should have_content('Thanks! You are already awesome and stuff!')
-        # NOTE: Intentionally making this fail so that I will remember to implement the wiki page with the thanks notice. 
+        page.should have_content("Totes Magotes") # NOTE: Intentionally making this fail so that I will remember to implement the wiki page with the thanks notice. 
       end
     end
    
