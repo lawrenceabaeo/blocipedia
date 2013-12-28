@@ -17,6 +17,9 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'factory_girl_rails', '~> 4.0'
+  gem 'capybara-webkit'
+  gem 'database_cleaner'
+  gem 'headless'
 end
 
 # Use SCSS for stylesheets

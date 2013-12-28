@@ -17,7 +17,7 @@ describe 'Buying Premium' do
     end
 
     context 'when logged-in but not Premium' do 
-      it 'lets user order' do
+      it 'lets user order', :js => true do
         user = create(:user)
         click_on 'Sign In'
         fill_in 'Email', with: user[:email]
@@ -34,8 +34,7 @@ describe 'Buying Premium' do
         page.should have_content('Thank you for subscribing!') # NOTE: Need to eventually replace this with correct landing page
         click_on 'Blocipedia'
         click_on 'Premium Plan'
-        page.should have_content("You're already a subscriber!")
-        # page.should have_content("Totes Magotes!") # NOTE: Intentionally making this fail so that I will remember to implement the wiki page with the thanks notice. 
+        page.should have_content("Totes Magotes!") # NOTE: Intentionally making this fail so that I will remember to implement the wiki page with the thanks notice. 
       end
     end
 

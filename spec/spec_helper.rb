@@ -6,6 +6,10 @@ require 'rspec/autorun'
 
 require 'capybara/rspec'
 require 'capybara/rails'
+require 'capybara/webkit/matchers'
+require 'headless'
+
+Capybara.javascript_driver = :webkit
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -30,7 +34,10 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  # config.use_transactional_fixtures = true # this is the original, suggested setting
+  # Turned this to false, according to this blog: 
+  # http://devblog.avdi.org/2012/08/31/configuring-database_cleaner-with-rails-rspec-capybara-and-selenium/
+  config.use_transactional_fixtures = false
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
@@ -42,4 +49,41 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  # This sectin from: 
+  # http://devblog.avdi.org/2012/08/31/configuring-database_cleaner-with-rails-rspec-capybara-and-selenium/
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, :js => true) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
+  # This section from: 
+  # http://blog.55minutes.com/2013/10/test-javascript-with-capybara-webkit/
+  config.include(Capybara::Webkit::RspecMatchers, :type => :feature)
+
+  # The following was adapated from somewhere, likely this page: 
+  # http://www.tecnobrat.com/blog/2012/03/24/headless-continuous-integration-with-rspec-capybara-cruisecontrol-rb/
+  headless = Headless.new
+  headless.start
+
+  at_exit do
+    headless.destroy
+  end
+
+
 end
