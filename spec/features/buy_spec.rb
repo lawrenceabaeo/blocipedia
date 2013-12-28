@@ -31,7 +31,7 @@ describe 'Buying Premium' do
         select '7 - July', from: "card_month"
         select  '2015', from: "card_year"
         click_button 'Subscribe' # Need to figure out how to use javascript in our headless vagrant environment
-        page.should have_content('Thank you for subscribing!')
+        page.should have_content('Thank you for subscribing!') # NOTE: Need to eventually replace this with correct landing page
         click_on 'Blocipedia'
         click_on 'Premium Plan'
         page.should have_content("You're already a subscriber!")
