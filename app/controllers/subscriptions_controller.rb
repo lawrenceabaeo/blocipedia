@@ -5,7 +5,7 @@ class SubscriptionsController < ApplicationController
         # TODO: update redirect to premium user's wiki home page with a thank you alert
         redirect_to root_path, :notice => "You're already a subscriber!"
       else
-        plan = Plan.find(1) # Hardcoding this for now, since only one plan
+        plan = Plan.monthly
         @subscription = plan.subscriptions.build
       end
     else # user is not logged in

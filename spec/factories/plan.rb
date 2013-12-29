@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :plan do
-    name "Five Dollars a Month"
+    name "Five Dollars A Month"
     price 5.00
   end
 end
