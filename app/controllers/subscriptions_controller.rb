@@ -1,7 +1,7 @@
 class SubscriptionsController < ApplicationController
   def new
     if (current_user)
-      if (current_user.role == 'premium')
+      if (Subscription.find_by user_id: current_user.id)
         # TODO: update redirect to premium user's wiki home page with a thank you alert
         redirect_to root_path, :notice => "You're already a subscriber!"
       else
