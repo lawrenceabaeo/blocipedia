@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_one :subscription
+  has_many :wikis
 
   ROLES = %w[member collaborator owner]
   def role?(base_role)
