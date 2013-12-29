@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_one :subscription
   has_many :wikis
+  has_many :collaborators
 
   ROLES = %w[member collaborator owner]
   def role?(base_role)
