@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131229185353) do
+ActiveRecord::Schema.define(version: 20131230204132) do
 
   create_table "collaborators", force: true do |t|
     t.integer  "user_id"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20131229185353) do
   create_table "wikis", force: true do |t|
     t.string   "title"
     t.string   "description"
-    t.string   "access"
+    t.boolean  "public_access", limit: 255, default: true
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
