@@ -1,4 +1,9 @@
 require 'spec_helper'
+require 'helpers/helper'
+
+RSpec.configure do |c|
+  c.include Helpers
+end
 
 describe 'Buying Premium' do
   
@@ -10,7 +15,7 @@ describe 'Buying Premium' do
   describe 'clicking home page Premium Plan button' do 
 
     context 'when user is not-logged-in' do 
-      it 'shows sign-up page' do
+      xit 'shows sign-up page' do
         click_on 'Premium Plan'
         page.should have_content('Password confirmation')    
       end
@@ -19,10 +24,7 @@ describe 'Buying Premium' do
     context 'when logged-in but not Premium' do 
       it 'lets user order', :js => true do
         user = create(:user)
-        click_on 'Sign In'
-        fill_in 'Email', with: user[:email]
-        fill_in 'Password', with: "helloworld" # yup, hardcoding this here, I have a delicious bookmark somwhere explaining why
-        click_button 'Sign in'    
+        sign_in(user) # from Helpers module
         page.should have_content('Signed in successfully.')
         click_on 'Premium Plan'
         page.should have_content('Credit Card Number')
@@ -39,12 +41,10 @@ describe 'Buying Premium' do
     end
 
     context 'when user is already a Premium Plan subscriber' do 
-      it 'shows the wiki page with thanks notice' do
+      xit 'shows the wiki page with thanks notice' do
         subscription = FactoryGirl.create :subscription
         user = subscription.user
-        click_on 'Sign In'
-        fill_in 'Email', with: user[:email]
-        fill_in 'Password', with: "helloworld" # yup, hardcoding this here, I have a delicious bookmark somwhere explaining why
+        sign_in(user) # from Helpers module
         click_button 'Sign in'
         page.should have_content('Signed in successfully.')
         click_on 'Premium Plan'
