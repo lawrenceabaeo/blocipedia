@@ -14,16 +14,21 @@
   
   <div class="pure-g-r">
     
-    <div id="top-nav-bar" class="pure-u-1-1 nav-bar">
-      <ul class="nav-bar">
-        <li><%= link_to "Blocipedia", root_path %></li>
-        <% if current_user %>
-          <li>Hello <%= link_to (current_user.name || current_user.email), edit_user_registration_path %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
-        <% else %>
-          <li><%= link_to "Sign In", new_user_session_path %> or </li>
-          <li><%= link_to "Sign Up", new_user_registration_path %></li>
-        <% end %>
-      </ul>
+    <div id="navcontainer">
+      <span class="left">
+        <%= link_to "Blocipedia", root_path %>
+      </span>
+      <span class="right">
+        <ul id="nav">
+          <% if current_user %>
+            <li><%= link_to (current_user.name || current_user.email), edit_user_registration_path %></li>
+            <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Sign In", new_user_session_path %></li>
+            <li><%= link_to "Sign Up", new_user_registration_path %></li>
+          <% end %>
+        </ul>
+      </span>
     </div>
 
     <% if flash[:notice] %>

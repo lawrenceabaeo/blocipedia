@@ -23,6 +23,45 @@
     display: inline;
 }
 
+/* from the interwebs:
+http://csscreator.com/node/4636
+*/
+#navcontainer {
+/*    font-size: 0.8em;*/    
+    width: 100%;
+    background: #F4FBF5;
+}
+
+span.left {
+    float: left;
+    display: inline-block;
+    /*width: 25%;*/
+    /*padding-left: 10px;*/
+    margin: 10px 0 10px 10px;
+}
+
+span.right {
+    float: right;
+    display: inline-block;
+    /*width: 70%;*/
+    /*text-align: right;*/
+    margin: 10px 10px 10px 0;
+}
+
+#nav {
+    margin: 0;
+    padding: 0;
+}
+
+#nav li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 10px;
+    display: inline;
+}
+
+
+
 
 /* -- Welcome Page styling -- */
 banner {
