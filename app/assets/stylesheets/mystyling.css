@@ -33,6 +33,11 @@ http://csscreator.com/node/4636
 }
 
 #navcontainer a:link {text-decoration:none;}
+#navcontainer a {color:#717171;}      /* unvisited link */
+#navcontainer a:visited {color:#717171;}  /* visited link */
+#navcontainer a:hover {color:#0D777D;}  /* mouse over link */
+#navcontainer a:active {color:#000000;}  /* selected link */
+
 
 span.left {
     float: left;
