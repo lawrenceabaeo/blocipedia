@@ -20,6 +20,7 @@ group :development, :test do
   gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'headless'
+  gem 'shoulda-matchers'
 end
 
 # Use SCSS for stylesheets
