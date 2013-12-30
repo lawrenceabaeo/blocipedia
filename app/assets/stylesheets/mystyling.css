@@ -32,6 +32,8 @@ http://csscreator.com/node/4636
     background: #F4FBF5;
 }
 
+#navcontainer a:link {text-decoration:none;}
+
 span.left {
     float: left;
     display: inline-block;
