@@ -1,2 +1,9 @@
-<h1>Wikis#index</h1>
-<p>Find me in app/views/wikis/index.html.erb</p>
+<div class="pure-u-1-1 wiki">
+    <% if current_user %>
+      <h1>My wikis</h1>
+      <p>TODO: PLACEHOLDER - need to show logged-in user's wiki list here, controller needs to be able to figure out user's wiki list</p>
+      <%= button_to "New wiki", new_wiki_path, :id => "new_wiki_button", :class => "pure-button", :method => :get %>
+    <% else %>
+      <p>TODO: PLACEHOLDER - need to figure out what to show not-logged-in users</p>
+    <% end %>
+</div>

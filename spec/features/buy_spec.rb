@@ -9,13 +9,13 @@ describe 'Buying Premium' do
   
   before :each do
     create(:plan) #create the only plan in our plan database
-    visit '/'
+    visit root_path
   end
 
   describe 'clicking home page Premium Plan button' do 
 
     context 'when user is not-logged-in' do 
-      xit 'shows sign-up page' do
+      it 'shows sign-up page' do
         click_on 'Premium Plan'
         page.should have_content('Password confirmation')    
       end
@@ -41,11 +41,10 @@ describe 'Buying Premium' do
     end
 
     context 'when user is already a Premium Plan subscriber' do 
-      xit 'shows the wiki page with thanks notice' do
+      it 'shows the wiki page with thanks notice' do
         subscription = FactoryGirl.create :subscription
         user = subscription.user
         sign_in(user) # from Helpers module
-        click_button 'Sign in'
         page.should have_content('Signed in successfully.')
         click_on 'Premium Plan'
         page.should have_content("Totes Magotes") # NOTE: Intentionally making this fail so that I will remember to implement the wiki page with the thanks notice. 

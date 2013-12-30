@@ -115,3 +115,15 @@ banner {
     font-size: small;
 }
 
+
+/* -- Wiki -- */
+
+.wiki {
+    text-align: center; 
+    width: 100%;
+
+}
+
+.debug {
+    border: 1px solid red
+}
