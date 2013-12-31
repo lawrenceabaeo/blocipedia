@@ -139,6 +139,14 @@ banner {
     border: 1px solid #f00;
 }
 
+.field_with_errors #wiki_title_input {
+    border: 1px solid #f00;
+}
+
+.field_with_errors #wiki_body {
+    border: 1px solid #f00;
+}
+
 
 .pure-form-aligned .pure-control-group p { /* I had to create this to handle the note in the edit profile form */
     text-align: right;

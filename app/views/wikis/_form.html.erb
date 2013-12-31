@@ -1,7 +1,7 @@
   <%= form_for(@wiki, html: {:class => 'pure-form pure-form-aligned'}) do |f| %>
     <% if wiki.errors.any? %>
-      <div class="alert">
-        <h4>There are  <%= pluralize(wiki.errors.count, "error") %>.</h4>
+      <div id="error_explanation">
+        <h2><%= pluralize(wiki.errors.count, "error") %> prohibied this wiki from being saved or updated:</h2>
         <ul>
           <% wiki.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
@@ -17,7 +17,7 @@
       
       <div class="pure-control-group">
         <%=  f.label :body %>
-        <%=  f.text_area :body %>
+        <%=  f.text_area :body, :id => 'wiki_body' %>
       </div>
 
       <div class="pure-controls">
