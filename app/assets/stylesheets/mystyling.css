@@ -156,6 +156,16 @@ banner {
     margin: 50px auto 0 auto;
 }
 
+.bloccipedia-form textarea{
+    width: 450px;
+    height: 400px;
+}
+
+#wiki_title_input {
+    width: 450px;
+}
+
+
 .devise-links {
     margin-top: 20px;
     font-size: small;
@@ -171,5 +181,5 @@ banner {
 }
 
 .debug {
-    border: 1px solid red
+    border: 1px solid red;
 }
