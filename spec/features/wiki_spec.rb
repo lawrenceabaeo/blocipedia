@@ -34,6 +34,26 @@ describe 'Wiki index page' do
 
 
   describe 'Submit new wiki' do
+    it 'shows error message when title too short' do
+      user = create(:user)
+      sign_in(user) # from Helpers module
+      visit wikis_path
+      click_on 'New wiki'
+      fill_in 'wiki_title_input', with: "x"
+      fill_in 'wiki_body', with: "Pee la Peep"
+      click_on 'Save'
+      page.should have_content("Title is too short")
+    end
+    it 'shows error message when body too short' do
+      user = create(:user)
+      sign_in(user) # from Helpers module
+      visit wikis_path
+      click_on 'New wiki'
+      fill_in 'wiki_title_input', with: "Poop dee doopo"
+      fill_in 'wiki_body', with: "x"
+      click_on 'Save'
+      page.should have_content("Body is too short")
+    end
     it 'shows Wiki was saved message' do
         user = create(:user)
         sign_in(user) # from Helpers module

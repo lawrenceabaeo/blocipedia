@@ -1,20 +1,4 @@
 <div class="pure-u-1-1 bloccipedia-form">
   <h1>New Wiki:</h1>
-  <%= form_for(@wiki, html: {:class => 'pure-form pure-form-aligned'}) do |f| %>
-    <fieldset>
-      <div class="pure-control-group">
-        <%=  f.label :title %>
-        <%=  f.text_field :title, :id => 'wiki_title_input' %>
-      </div>
-      
-      <div class="pure-control-group">
-        <%=  f.label :body %>
-        <%=  f.text_area :body %>
-      </div>
-
-      <div class="pure-controls">
-        <%=  f.submit "Save", :class => 'pure-button' %>
-      </div>
-    </fieldset>
-  <% end  %>
+  <%= render partial: 'form', locals: {wiki: @wiki} %>
 </div>
