@@ -46,12 +46,18 @@ describe 'Wiki index page' do
     end
   end
 
-  describe 'Showing an existing wiki' do
-    it 'shows title and body of an existing wiki' do 
+  describe 'Existing wiki page' do
+    it 'has title and body of an existing wiki' do 
       wiki = FactoryGirl.create :wiki
       visit wiki_path(wiki)
       page.should have_content(wiki.title)
       page.should have_content(wiki.body)
+    end
+    it 'has edit button' do
+      wiki = FactoryGirl.create :wiki
+      visit wiki_path(wiki)
+      page.should have_button('Edit')
+      page.should have_content('Sign out') # INTENTIONAL FAIL! TODO: make wiki show page have authorized edit button. 
     end
   end
 

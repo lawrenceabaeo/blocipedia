@@ -1,2 +1,3 @@
 <h1><%= @wiki.title %></h1>
 <p><%= @wiki.body %></p>
+<%= button_to("Edit", { :action => "edit" }, :method => :get, class: "pure-button") %>
