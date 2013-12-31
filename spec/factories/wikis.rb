@@ -3,8 +3,7 @@
 FactoryGirl.define do
   factory :wiki do
     title "MyString"
-    description "MyString"
-    access "MyString"
-    user nil
+    body "MyString"
+    user # I guess factory girl is smart enough to create a user, just by magically having the user stated here
   end
 end
