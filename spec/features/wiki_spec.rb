@@ -117,6 +117,24 @@ describe 'Wiki index page' do
     end
   end  
 
+  describe 'Markdown' do 
+    it 'does not show markdown markup in title' do
+      wiki = FactoryGirl.create :wiki
+      title =  "*Barry Manilow*"
+      wiki.update_attribute(:title, title)
+      visit wiki_path(wiki)
+      page.should_not have_content(title)
+    end
+    it 'does not show markdown markup in body' do
+      wiki = FactoryGirl.create :wiki
+      body =  "*What would you do for a Klondike Bar*"
+      wiki.update_attribute(:body, body)
+      visit wiki_path(wiki)
+      page.should_not have_content(body)
+    end
+
+  end
+
 
 
 end

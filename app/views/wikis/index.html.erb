@@ -4,7 +4,7 @@
       <p>TODO: PLACEHOLDER - need to show logged-in user's wiki list here, controller needs to be able to figure out user's wiki list</p>
       <h1>All Wikis</h1>
       <% @wikis.each do |wiki| %>
-        <p><%= link_to wiki.title, wiki %></p>
+        <p><%= link_to (markdown wiki.title), wiki %></p>
       <% end %>
       <%= button_to "New wiki", new_wiki_path, :id => "new_wiki_button", :class => "pure-button", :method => :get %>
     <% else %>
