@@ -1,12 +1,19 @@
-<h1>Wikis#new</h1>
-<p>Find me in app/views/wikis/new.html.erb</p>
+<div class="pure-u-1-1 bloccipedia-form">
+  <%= form_for(@wiki, html: {:class => 'pure-form pure-form-aligned'}) do |f| %>
+    <fieldset>
+      <div class="pure-control-group">
+        <%=  f.label :title %>
+        <%=  f.text_field :title %>
+      </div>
+      
+      <div class="pure-control-group">
+        <%=  f.label :body %>
+        <%=  f.text_area :body %>
+      </div>
 
-<%= form_for @wiki do |f| %>
-  <%=  f.label :title %>
-  <%=  f.text_field :title %>
-  
-  <%=  f.label :body %>
-  <%=  f.text_area :body %>
-
-  <%=  f.submit "Save"%>
-<% end  %>
+      <div class="pure-controls">
+        <%=  f.submit "Save", :class => 'pure-button' %>
+      </div>
+    </fieldset>
+  <% end  %>
+</div>
