@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :wiki do
-    title "MyString"
-    body "MyString"
+    title "My Title String"
+    body "My Body String"
     user # I guess factory girl is smart enough to create a user, just by magically having the user stated here
   end
 end
