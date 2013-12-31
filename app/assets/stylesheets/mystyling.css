@@ -174,11 +174,18 @@ banner {
 
 /* -- Wiki -- */
 
-.wiki {
+.wiki { /* wiki index */
     text-align: center; 
     width: 100%;
 
 }
+
+.single-wiki {
+    margin-right: auto;
+    margin-left: auto;
+    width: 75%;
+}
+
 
 .debug {
     border: 1px solid red;

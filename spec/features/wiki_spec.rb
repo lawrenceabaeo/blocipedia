@@ -57,7 +57,7 @@ describe 'Wiki index page' do
       wiki = FactoryGirl.create :wiki
       visit wiki_path(wiki)
       page.should have_button('Edit')
-      page.should have_content('Sign out') # INTENTIONAL FAIL! TODO: make wiki show page have authorized edit button. 
+      page.should have_content('Sign out')  # NOTE: Intentionally making this fail - TODO: make wiki show page have authorized edit button. 
     end
   end
 
