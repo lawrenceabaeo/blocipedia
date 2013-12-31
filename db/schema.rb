@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 20131230232332) do
 
   create_table "wikis", force: true do |t|
     t.string   "title"
-    t.string   "access"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

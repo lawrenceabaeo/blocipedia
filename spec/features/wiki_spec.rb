@@ -15,7 +15,7 @@ describe 'Wiki index page' do
   describe 'New wiki button' do 
 
     context 'when user is not-logged-in' do 
-      it 'does NOT show the New wiki button' do
+      xit 'does NOT show the New wiki button' do
         # should it show the sign up buttons? or some kind of advertisement?
         visit wikis_path
         page.should_not have_button('New wiki')
@@ -23,12 +23,26 @@ describe 'Wiki index page' do
     end
 
     context 'when user IS logged-in' do
-      it 'shows the new wiki button' do
+      xit 'shows the new wiki button' do
         user = create(:user)
         sign_in(user) # from Helpers module
         visit wikis_path
         page.should have_button('New wiki')
       end
+    end
+  end
+
+
+  describe 'Submit new wiki' do
+    it 'shows Wiki was saved message' do
+        user = create(:user)
+        sign_in(user) # from Helpers module
+        visit wikis_path
+        click_on 'New wiki'
+        fill_in 'wiki_title', with: "Poop dee doop"
+        fill_in 'wiki_body', with: "Pee la Peep"
+        click_on 'Save'
+        page.should have_content("Wiki was saved.")
     end
   end
 
