@@ -74,7 +74,17 @@ describe 'Wiki index page' do
       page.should have_button('Update')
       page.should have_content('Sign out')  # NOTE: Intentionally making this fail - TODO: make wiki show page have authorized edit button. 
     end
-    it 'shows updated content on wiki page after update submission' do 
+    it 'shows an updated flash message after submitting edit' do
+      wiki = FactoryGirl.create :wiki
+      visit edit_wiki_path(wiki)
+      title = "Poop dee doop"
+      body = "Pee la Peep"
+      fill_in 'wiki_title_input', with: title
+      fill_in 'wiki_body', with: body
+      click_on 'Update'
+      page.should have_content("Wiki was updated.")
+    end
+    it 'shows updated title and body on wiki page after submitting edit' do 
       wiki = FactoryGirl.create :wiki
       visit edit_wiki_path(wiki)
       title = "Poop dee doop"
@@ -84,16 +94,6 @@ describe 'Wiki index page' do
       click_on 'Update'
       page.should have_content(title)
       page.should have_content(body)
-    end
-    it 'shows success after edit' do
-      wiki = FactoryGirl.create :wiki
-      visit edit_wiki_path(wiki)
-      title = "Poop dee doop"
-      body = "Pee la Peep"
-      fill_in 'wiki_title_input', with: title
-      fill_in 'wiki_body', with: body
-      click_on 'Update'
-      page.should have_content("Wiki was updated.")
     end
   end  
 
