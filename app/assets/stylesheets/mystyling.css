@@ -7,22 +7,6 @@
 
 
 /* -- Top Nav Bar styling -- */
-#top-nav-bar {
-    width: 100%;
-    margin-right: 5px;
-    margin-bottom: 5px;
-}
-
-.nav-bar ul {
-    margin: 0 10px 0 auto;
-    float: right;
-    list-style-type: none;
-}
-
-.nav-bar li {
-    display: inline;
-}
-
 /* from the interwebs:
 http://csscreator.com/node/4636
 */
