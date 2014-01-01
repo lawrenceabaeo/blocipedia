@@ -10,7 +10,7 @@
                 <%  puts markdown owned_wiki.title %>
                 <td><%= link_to (markdown owned_wiki.title), owned_wiki, :class => 'wiki-table-link' %></td>
                 <td><%= link_to "edit", edit_wiki_path(owned_wiki), :class => 'wiki-table-link' %></td>
-                <td>delete</td>
+                <td><%= link_to "delete", wiki_path(owned_wiki), method: :delete %></td>
               </tr> 
             <% end %>
           </tbody>

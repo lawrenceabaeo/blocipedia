@@ -6,7 +6,6 @@ RSpec.configure do |c|
 end
 
 describe 'Wiki index page' do
-  
   before :each do
     create(:plan) #create the only plan in our plan database
     visit root_path
@@ -152,17 +151,43 @@ describe 'Wiki index page' do
       within('#my_wikis') { expect(page).to_not have_content(title0) }
     end
 
-    it 'has edit link in my wikis' do 
+    it 'has edit link for entry' do 
+      user_makes_wiki_signs_in_and_goes_to_wikis
+      within('#my_wikis') { expect(page).to have_link("edit") }
+    end
+
+    it 'has delete link for entry' do 
+      user_makes_wiki_signs_in_and_goes_to_wikis
+      within('#my_wikis') { expect(page).to have_link("delete") }
+    end
+
+    it 'shows delete message after deleting' do
+      user_makes_wiki_signs_in_and_goes_to_wikis
+      click_on 'delete'
+      page.should have_content("Wiki was successfully deleted.")
+    end
+
+    it 'does not show wiki entry after deletion' do 
       user = create(:user) 
       title = "My wiki title 0"
       wikibody = "Generic body"
       wiki = user.wikis.create(title: title, body: wikibody)
       sign_in(user) # from Helpers module
       visit wikis_path
-      edit = "edit"
-      within('#my_wikis') { expect(page).to have_content(edit) }
+      click_on 'delete'
+      page.should_not have_content(title)
     end
-
   end
 
+end
+
+private 
+
+def user_makes_wiki_signs_in_and_goes_to_wikis
+    user = create(:user) 
+    title = "My wiki title 0"
+    wikibody = "Generic body"
+    wiki = user.wikis.create(title: title, body: wikibody)
+    sign_in(user) # from Helpers module
+    visit wikis_path
 end

@@ -40,6 +40,17 @@ class WikisController < ApplicationController
     end
   end
 
+  def destroy
+    @wiki = Wiki.find(params[:id])
+    if @wiki.destroy
+      flash[:notice] = "Wiki was successfully deleted."
+    else
+      flash[:error] = "Wiki could NOT be deleted. Try again."
+    end
+    redirect_to wikis_path
+  end
+
+  ########################################
   private 
 
   def wiki_params
