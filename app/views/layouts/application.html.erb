@@ -20,6 +20,7 @@
       </span>
       <span class="right">
         <ul id="nav">
+          <li><%= link_to "Wikis", wikis_path %></li>
           <% if current_user %>
             <li><%= link_to (current_user.name || current_user.email), edit_user_registration_path %></li>
             <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
