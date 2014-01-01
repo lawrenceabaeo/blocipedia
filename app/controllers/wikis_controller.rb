@@ -1,6 +1,9 @@
 class WikisController < ApplicationController
   def index
     @wikis =Wiki.all
+    if (current_user)
+      @user_owned_wikis = current_user_wiki(current_user)
+    end
   end
 
   def show
@@ -40,7 +43,10 @@ class WikisController < ApplicationController
   private 
 
   def wiki_params
-    # params.require(:wiki).permit(:title, :user_id, :public_access, :body)
     params.require(:wiki).permit(:title, :body)
+  end
+
+  def current_user_wiki(user)
+    Wiki.where("wikis.user_id = ?", user.id)
   end
 end

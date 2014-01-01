@@ -1,13 +1,20 @@
 <div class="pure-u-1-1 wiki">
-    <% if current_user %>
+  <% if (current_user) %>
+    <div id="my_wikis">
       <h1>My wikis</h1>
-      <p>TODO: PLACEHOLDER - need to show logged-in user's wiki list here, controller needs to be able to figure out user's wiki list</p>
-      <h1>All Wikis</h1>
-      <% @wikis.each do |wiki| %>
-        <p><%= link_to (markdown wiki.title), wiki %></p>
+      <% if (@user_owned_wikis.first != nil)%>
+        <% @user_owned_wikis.each do |owned_wiki| %>
+          <p><%= link_to (markdown owned_wiki.title), owned_wiki %></p>
+        <% end %>
+      <% else %>
+        <p>You haven't written any wikis yet. Make one of your own, click the 'New wiki' button below!</p>
       <% end %>
       <%= button_to "New wiki", new_wiki_path, :id => "new_wiki_button", :class => "pure-button", :method => :get %>
-    <% else %>
-      <p>TODO: PLACEHOLDER - need to figure out what to show not-logged-in users</p>
-    <% end %>
+    </div>
+  <% end %>
+  
+  <h1>All Wikis</h1>
+  <% @wikis.each do |wiki| %>
+    <p><%= link_to (markdown wiki.title), wiki %></p>
+  <% end %>
 </div>

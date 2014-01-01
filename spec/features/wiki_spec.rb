@@ -132,9 +132,25 @@ describe 'Wiki index page' do
       visit wiki_path(wiki)
       page.should_not have_content(body)
     end
-
   end
 
+  describe 'My Wikis' do 
+    it 'shows the wikis I own on the wiki index page' do
+      wikibody = "Generic body"
 
+      user0 = create(:user) 
+      title0 = "My wiki title 0"
+      wiki0 = user0.wikis.create(title: title0, body: wikibody)
+
+      user1 = create(:user)
+      title1 = "My wiki title 1"
+      wiki1 = user1.wikis.create(title: title1, body: wikibody)
+
+      sign_in(user1) # from Helpers module
+      visit wikis_path
+      within('#my_wikis') { expect(page).to have_content(title1) }
+      within('#my_wikis') { expect(page).to_not have_content(title0) }
+    end
+  end
 
 end
