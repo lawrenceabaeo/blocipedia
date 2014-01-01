@@ -151,6 +151,18 @@ describe 'Wiki index page' do
       within('#my_wikis') { expect(page).to have_content(title1) }
       within('#my_wikis') { expect(page).to_not have_content(title0) }
     end
+
+    it 'has edit link in my wikis' do 
+      user = create(:user) 
+      title = "My wiki title 0"
+      wikibody = "Generic body"
+      wiki = user.wikis.create(title: title, body: wikibody)
+      sign_in(user) # from Helpers module
+      visit wikis_path
+      edit = "edit"
+      within('#my_wikis') { expect(page).to have_content(edit) }
+    end
+
   end
 
 end

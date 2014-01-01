@@ -178,6 +178,18 @@ banner {
     width: 75%;
 }
 
+.wiki-table {
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;   
+}
+
+.wiki-table-link p {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    text-align: left;
+}
+
 
 .debug {
     border: 1px solid red;

@@ -3,13 +3,23 @@
     <div id="my_wikis">
       <h1>My wikis</h1>
       <% if (@user_owned_wikis.first != nil)%>
-        <% @user_owned_wikis.each do |owned_wiki| %>
-          <p><%= link_to (markdown owned_wiki.title), owned_wiki %></p>
-        <% end %>
+        <table class="pure-table pure-table-bordered wiki-table">
+          <tbody>
+            <% @user_owned_wikis.each do |owned_wiki| %>
+              <tr> 
+                <%  puts markdown owned_wiki.title %>
+                <td><%= link_to (markdown owned_wiki.title), owned_wiki, :class => 'wiki-table-link' %></td>
+                <td><%= link_to "edit", edit_wiki_path(owned_wiki), :class => 'wiki-table-link' %></td>
+                <td>delete</td>
+              </tr> 
+            <% end %>
+          </tbody>
+        </table>
       <% else %>
         <p>You haven't written any wikis yet. Make one of your own, click the 'New wiki' button below!</p>
       <% end %>
-      <%= button_to "New wiki", new_wiki_path, :id => "new_wiki_button", :class => "pure-button", :method => :get %>
+      
+      <p><%= button_to "New wiki", new_wiki_path, :id => "new_wiki_button", :class => "pure-button", :method => :get %></p>
     </div>
   <% end %>
   
