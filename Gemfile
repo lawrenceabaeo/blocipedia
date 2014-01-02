@@ -71,6 +71,4 @@ gem 'rails_12factor'
 
 gem 'devise'
 
-gem 'cancan'
-
 gem 'redcarpet'

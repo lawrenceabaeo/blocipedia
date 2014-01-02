@@ -9,7 +9,6 @@ class SubscriptionsController < ApplicationController
         @subscription = plan.subscriptions.build
       end
     else # user is not logged in
-      # authorize! :read, Subscription, message: "To subscribe to our Premium Service, sign up and confirm your email address!"
       redirect_to new_user_registration_path, :alert => "To subscribe to our Premium Service, sign up and confirm your email address!"
     end
   end
