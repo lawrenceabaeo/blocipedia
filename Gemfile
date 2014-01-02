@@ -72,3 +72,5 @@ gem 'rails_12factor'
 gem 'devise'
 
 gem 'redcarpet'
+
+gem 'pundit'
