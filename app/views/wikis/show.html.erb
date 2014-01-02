@@ -1,5 +1,7 @@
 <div class="pure-u-1-1 single-wiki">
   <h1><%= markdown @wiki.title %></h1>
   <p><%= markdown @wiki.body %></p>
-  <%= button_to("Edit", { :action => "edit" }, :method => :get, class: "pure-button") %>
+  <% #if policy(@wiki).edit? %>
+    <%= button_to("Edit", { :action => "edit" }, :method => :get, class: "pure-button") %>
+  <% #end %>
 </div>
