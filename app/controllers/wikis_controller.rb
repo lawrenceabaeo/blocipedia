@@ -1,6 +1,7 @@
 class WikisController < ApplicationController
   def index
     @wikis =Wiki.all
+    @public_wikis = policy_scope(Wiki)
     if (current_user)
       @user_owned_wikis = current_user_wiki(current_user)
     end

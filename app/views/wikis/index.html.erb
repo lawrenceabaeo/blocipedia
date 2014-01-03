@@ -18,13 +18,18 @@
       <% else %>
         <p>You haven't written any wikis yet. Make one of your own, click the 'New wiki' button below!</p>
       <% end %>
-      
+
       <p><%= button_to "New wiki", new_wiki_path, :id => "new_wiki_button", :class => "pure-button", :method => :get %></p>
+      
+      <h1>Public Wikis</h1>
+
     </div>
+  <% else %>
+    <h1>Wikis</h1>
   <% end %>
-  
-  <h1>All Wikis</h1>
-  <% @wikis.each do |wiki| %>
+
+  <% @public_wikis.each do |wiki| %>
     <p><%= link_to (markdown wiki.title), wiki %></p>
   <% end %>
+  
 </div>

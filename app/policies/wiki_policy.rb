@@ -1,4 +1,10 @@
 WikiPolicy = Struct.new(:user, :wiki) do 
+  
+  self::Scope = Struct.new(:user, :scope) do
+    def resolve
+      scope.where(:public_access => true)
+    end
+  end
 
   def edit?
     owned?
