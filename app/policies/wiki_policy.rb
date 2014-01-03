@@ -16,4 +16,12 @@ WikiPolicy = Struct.new(:user, :wiki) do
     end    
   end
 
+  def premium?
+    if user
+      Subscription.find_by user_id: user.id
+    else
+      false
+    end    
+  end
+
 end

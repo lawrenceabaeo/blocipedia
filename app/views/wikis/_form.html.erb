@@ -21,7 +21,7 @@
       </div>
       
       <div class="pure-controls">
-        <% if policy(@wiki).owned? %>
+        <% if policy(@wiki).premium? %>
           <%= f.label(:public_access, "Public access (everyone can see)" ) %>
           <%= f.check_box :public_access%>
         <% end %>
