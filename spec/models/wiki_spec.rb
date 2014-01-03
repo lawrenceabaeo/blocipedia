@@ -7,7 +7,7 @@ describe Wiki do
   it { should belong_to :user }
   it { should have_many :collaborators}
   it { should validate_presence_of(:user_id)}
-  it { should validate_presence_of(:public_access)}
+  # it { should validate_presence_of(:public_access)}
   it "has true for public_access by default" do
     Wiki.new.public_access.should be_true
   end

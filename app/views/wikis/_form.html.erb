@@ -19,6 +19,13 @@
         <%=  f.label :body %>
         <%=  f.text_area :body, :id => 'wiki_body' %>
       </div>
+      
+      <div class="pure-controls">
+        <% if policy(@wiki).owned? %>
+          <%= f.label(:public_access, "Public access (everyone can see)" ) %>
+          <%= f.check_box :public_access%>
+        <% end %>
+      </div>
 
       <div class="pure-controls">
         <% if (@wiki.title == nil && @wiki.body == nil) %>

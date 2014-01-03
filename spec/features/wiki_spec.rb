@@ -84,11 +84,20 @@ describe 'Wiki index page' do
       expect(page).to have_field('wiki_title_input', with: @wiki.title)
       expect(page).to have_field('wiki_body', with: @wiki.body)
     end
+    
     it 'has Update button' do
       page.should have_button('Update')
       page.should have_content('Sign out')  # NOTE: Intentionally making this fail - TODO: make wiki show page have authorized edit button. 
     end
     
+    context 'owner is logged-in' do
+      it 'displays public access option' do
+        # expect(page).to have_checked_field("public_access")
+        page.should have_content('Public access')
+      end
+    end
+
+
     describe 'after submitting edit' do
       before :each do
         fill_in 'wiki_title_input', with: @title
