@@ -5,7 +5,7 @@ describe Wiki do
     create(:wiki).should be_valid
   end
   it { should belong_to :user }
-  it { should have_many :collaborators}
+  it { should have_many(:collaborators).dependent(:destroy)}
   it { should validate_presence_of(:user_id)}
   # it { should validate_presence_of(:public_access)}
   it "has true for public_access by default" do
