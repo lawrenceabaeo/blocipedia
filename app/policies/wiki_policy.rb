@@ -7,7 +7,7 @@ WikiPolicy = Struct.new(:user, :wiki) do
   end
 
   def edit?
-    owned?
+    wiki.public_access && user
   end
 
   def destroy?

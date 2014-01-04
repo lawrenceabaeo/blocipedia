@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'helpers/helper'
+require 'pundit/rspec'
 
 RSpec.configure do |c|
   c.include Helpers
@@ -59,10 +60,13 @@ describe 'Wiki index page' do
 
   describe 'Existing wiki page' do
     before :each do
+      user = create(:user)
+      sign_in(user) # from Helpers module
       @wiki = FactoryGirl.create :wiki
       visit wiki_path(@wiki)
     end
     it 'has title and body of an existing wiki' do 
+      save_and_open_page
       page.should have_content(@wiki.title)
       page.should have_content(@wiki.body)
     end
