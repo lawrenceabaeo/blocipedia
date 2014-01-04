@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   has_one :subscription
   has_many :wikis
-  has_many :collaborators
+  has_many :collaborators, :through => :wikis
 
   before_create :set_member
 

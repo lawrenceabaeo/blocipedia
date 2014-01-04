@@ -20,12 +20,21 @@
         <%=  f.text_area :body, :id => 'wiki_body' %>
       </div>
       
-      <div class="pure-controls">
-        <% if policy(@wiki).premium? %>
+      <% if policy(@wiki).premium? && (policy(@wiki).owned? || f.object.new_record?) %>
+        <div class="pure-control-group">
+            <%=  fields_for :users do |u| %>
+              <%= u.label :users, "Collaborators" %>
+              <%= u.collection_select(:id, @users, :id, :name, {:selected => @wiki.user_ids}, {:multiple => true}) %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if policy(@wiki).premium? && (policy(@wiki).owned? || f.object.new_record?) %>
+        <div class="pure-controls">
           <%= f.label(:public_access, "Public access (everyone can see)" ) %>
           <%= f.check_box :public_access%>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
 
       <div class="pure-controls">
         <% if (@wiki.title == nil && @wiki.body == nil) %>
