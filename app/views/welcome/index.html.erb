@@ -23,10 +23,17 @@
         <%= link_to "Premium Plan", new_subscription_path, class: 'pure-button' %>
       </div>
     <% else %>
-      <div class="pure-u-1-1">
-        <h2>Create private wikis!</h2>
-        <%= link_to "Premium Plan", new_subscription_path, class: 'pure-button' %>
-      </div>
+      <% if Subscription.find(current_user)%>
+        <div class="pure-u-1-1">
+          <h2>Current Status: Premium</h2>
+          <p>Thanks for being a premium member!</p>
+        </div>
+      <% else %>
+        <div class="pure-u-1-1">
+          <h2>Create private wikis!</h2>
+          <%= link_to "Premium Plan", new_subscription_path, class: 'pure-button' %>
+        </div>
+      <% end %>
     <% end %>
 
   </div>
