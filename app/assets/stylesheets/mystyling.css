@@ -196,6 +196,15 @@ banner {
     width: 50%;
 }
 
+.form-links {
+    font-size: 90%;
+}
+
+.form-links a {color:#717171;}      /* unvisited link */
+.form-links a:visited {color:#717171;}  /* visited link */
+.form-links a:hover {color:#0D777D;}  /* mouse over link */
+.form-links a:active {color:#000000;}  /* selected link */
+
 
 
 .debug {
