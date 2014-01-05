@@ -22,9 +22,10 @@
       
       <% if policy(@wiki).premium? && (policy(@wiki).owned? || f.object.new_record?) %>
         <div class="pure-control-group">
+            
             <%=  fields_for :users do |u| %>
               <%= u.label :users, "Collaborators" %>
-              <%= u.collection_select(:id, @users, :id, :name, {:selected => @wiki.user_ids}, {:multiple => true}) %>
+              <%= u.collection_select(:id, @users, :id, :name, {:selected => @wiki.user_ids}, {:multiple => true, class: 'chosen-select'}) %>
           <% end %>
         </div>
       <% end %>
