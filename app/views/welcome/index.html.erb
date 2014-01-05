@@ -23,7 +23,7 @@
         <%= link_to "Premium Plan", new_subscription_path, class: 'pure-button' %>
       </div>
     <% else %>
-      <% if Subscription.find(current_user)%>
+      <% if (Subscription.find_by_user_id(current_user))%>
         <div class="pure-u-1-1">
           <h2>Current Status: Premium</h2>
           <p>Thanks for being a premium member!</p>

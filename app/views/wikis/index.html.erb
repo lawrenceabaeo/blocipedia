@@ -5,12 +5,25 @@
       <% if (@user_owned_wikis.first != nil)%>
         <table class="pure-table pure-table-bordered wiki-table">
           <tbody>
+            <th>Wiki</th>
+            <th>Edit</th>
+            <th>Delete</th>   
+            <% if policy(Wiki).premium? %>
+              <th>Publicly <br />viewable?</th>
+            <% end %>
             <% @user_owned_wikis.each do |owned_wiki| %>
               <tr> 
                 <%  puts markdown owned_wiki.title %>
                 <td><%= link_to (markdown owned_wiki.title), owned_wiki, :class => 'wiki-table-link' %></td>
                 <td><%= link_to "edit", edit_wiki_path(owned_wiki), :class => 'wiki-table-link' %></td>
                 <td><%= link_to "delete", wiki_path(owned_wiki), method: :delete %></td>
+                <% if policy(Wiki).premium? %>
+                  <% public_access = "no"%>
+                  <% if owned_wiki.public_access == true %>
+                    <% public_access = "yes" %>
+                  <% end %>
+                  <td><%= link_to public_access, edit_wiki_path(owned_wiki), :class => 'wiki-table-link' %></td>
+                <% end %>
               </tr> 
             <% end %>
           </tbody>
@@ -20,16 +33,35 @@
       <% end %>
 
       <p><%= button_to "New wiki", new_wiki_path, :id => "new_wiki_button", :class => "pure-button", :method => :get %></p>
-      
-      <h1>Public Wikis</h1>
 
+      <h1>Wikis I Collaborate On</h1>
+      <% if (@my_collaborations.first != nil)%>
+        <table class="pure-table pure-table-bordered wiki-table">
+          <tbody>
+            <% @my_collaborations.each do |collaboration| %>
+              <tr> 
+                <%  puts markdown collaboration.title %>
+                <td><%= link_to (markdown collaboration.title), collaboration, :class => 'wiki-table-link' %></td>
+                <td><%= link_to "edit", edit_wiki_path(collaboration), :class => 'wiki-table-link' %></td>
+              </tr> 
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>You aren't collaborating on any wikis. </p>
+      <% end %>
     </div>
-  <% else %>
-    <h1>Wikis</h1>
-  <% end %>
-
-  <% @public_wikis.each do |wiki| %>
-    <p><%= link_to (markdown wiki.title), wiki %></p>
   <% end %>
   
+  <h1>All Public Wikis</h1>
+  <table class="pure-table pure-table-bordered wiki-table">
+    <tbody>
+      <% @public_wikis.each do |wiki| %>
+        <tr> 
+          <td><%  puts markdown wiki.title %><%= link_to (markdown wiki.title), wiki, :class => 'wiki-table-link' %></td>
+        </tr> 
+      <% end %>
+    </tbody>
+  </table>
+
 </div>

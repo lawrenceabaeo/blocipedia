@@ -3,12 +3,14 @@ class WikisController < ApplicationController
     @wikis =Wiki.all
     @public_wikis = policy_scope(Wiki)
     if (current_user)
-      @user_owned_wikis = current_user_wiki(current_user)
-    end
+      @user_owned_wikis = wikis_the_current_user_owns(current_user)
+      @my_collaborations = collaborations_the_current_user_is_part_of(current_user)
+    end    
   end
 
   def show
     @wiki = Wiki.friendly.find(params[:id])
+    authorize @wiki
   end
 
   def new
@@ -18,12 +20,15 @@ class WikisController < ApplicationController
 
   def create
     @wiki = current_user.wikis.build(wiki_params)
-    collabs = params[:users][:id]
-    collabs.each do |latest_collaborator|
-      if (latest_collaborator != "")
-        @wiki.users << User.find(latest_collaborator)
-      end
-    end unless collabs.nil?
+    if(params.has_key?(:users))
+      @wiki.collaborators.clear
+      collabs = params[:users][:id]
+      collabs.each do |latest_collaborator|
+        if (latest_collaborator != "")
+          @wiki.users << User.find(latest_collaborator)
+        end
+      end unless collabs.nil?
+    end
 
     if @wiki.save
       flash[:notice] = "Wiki was saved."
@@ -36,35 +41,33 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.friendly.find(params[:id])
-    # @collaborators = @wiki.collaborators
     @users = User.all
     authorize @wiki
   end
 
   def update
-    puts "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
-    puts params.inspect
-    puts "After puts params.inspect"
-    puts params[:users][:id]
-    puts "After params[:users][:id]"
-    puts "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
-    @wiki = Wiki.friendly.find(params[:id])
-    puts "BEFORE @wiki.collaborators BEFORE @wiki.collaborators"
-    puts @wiki.collaborators 
-    puts "AFTER @wiki.collaborators"
-    @wiki.collaborators.clear
-    puts "AFTER CLEARING COLLABORATORS AFTER CLEARING COLLABORATORS AFTER CLEARING COLLABORATORS "
-    puts "CURRENT COLLABORATORS:#{@wiki.collaborators}"
-    puts "AFTER CURRENT COLLABORATORS"
+    # puts "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+    # puts params.inspect
+    # puts "After puts params.inspect"
+    # puts params[:users][:id]
+    # puts "After params[:users][:id]"
+    # puts "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
     
-    collabs = params[:users][:id]
-    collabs.each do |latest_collaborator|
-      puts "latest_collaborator is #{latest_collaborator}"
-      if (latest_collaborator != "")
-        @wiki.users << User.find(latest_collaborator)
-      end
-    end unless collabs.nil?
-  
+    @wiki = Wiki.friendly.find(params[:id])
+    
+    if(params.has_key?(:users))
+      @wiki.collaborators.clear
+      # puts "AFTER CLEARING COLLABORATORS AFTER CLEARING COLLABORATORS AFTER CLEARING COLLABORATORS "
+      # puts "CURRENT COLLABORATORS:#{@wiki.collaborators}"
+      # puts "AFTER CURRENT COLLABORATORS"
+      collabs = params[:users][:id]
+      collabs.each do |latest_collaborator|
+        if (latest_collaborator != "")
+          @wiki.users << User.find(latest_collaborator)
+        end
+      end unless collabs.nil?
+    end
+
     if @wiki.update_attributes(wiki_params)
       flash[:notice] = "Wiki was updated."
       redirect_to @wiki
@@ -94,7 +97,15 @@ class WikisController < ApplicationController
     params.require(:wiki).permit(:title, :body, :public_access, collaborators_attributes: [:id, :user_id, :wiki_id, :_destroy])
   end
 
-  def current_user_wiki(user)
+  def wikis_the_current_user_owns(user)
     Wiki.where("wikis.user_id = ?", user.id)
+  end
+
+  def collaborations_the_current_user_is_part_of(user)
+    # Person.where(:confirmed => true).limit(5).pluck(:id)
+    wiki_ids = Collaborator.where(:user_id => user.id).pluck(:wiki_id)
+
+    # wiki_ids = Collaborator.where("user_id = ? ", user.id)
+    Wiki.find(wiki_ids) 
   end
 end
