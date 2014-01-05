@@ -205,6 +205,14 @@ banner {
 .form-links a:hover {color:#0D777D;}  /* mouse over link */
 .form-links a:active {color:#000000;}  /* selected link */
 
+.sign-up-later-area {
+    font-size: 90%;   
+}
+
+.sign-up-later-area a {color:#717171;}      /* unvisited link */
+.sign-up-later-area a:visited {color:#717171;}  /* visited link */
+.sign-up-later-area a:hover {color:#0D777D;}  /* mouse over link */
+.sign-up-later-area a:active {color:#000000;}  /* selected link */
 
 
 .debug {
