@@ -7,7 +7,8 @@ WikiPolicy = Struct.new(:user, :wiki) do
   end
 
   def show?
-    edit? # same rule as edit
+    # don't need to be logged in to see public access wikis
+    wiki.public_access || owned? || collaborator?
   end
 
   def edit?
