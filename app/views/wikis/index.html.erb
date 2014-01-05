@@ -5,12 +5,14 @@
       <% if (@user_owned_wikis.first != nil)%>
         <table class="pure-table pure-table-bordered wiki-table">
           <tbody>
-            <th>Wiki</th>
-            <th>Edit</th>
-            <th>Delete</th>   
-            <% if policy(Wiki).premium? %>
-              <th>Publicly <br />viewable?</th>
-            <% end %>
+            <thead>
+              <th>Wiki</th>
+              <th>Edit</th>
+              <th>Delete</th>   
+              <% if policy(Wiki).premium? %>
+                <th>Publicly <br />viewable?</th>
+              <% end %>
+            </thead>
             <% @user_owned_wikis.each do |owned_wiki| %>
               <tr> 
                 <%  puts markdown owned_wiki.title %>
@@ -37,6 +39,10 @@
       <h1>Wikis I Collaborate On</h1>
       <% if (@my_collaborations.first != nil)%>
         <table class="pure-table pure-table-bordered wiki-table">
+          <thead>
+            <th>Wiki</th>
+            <th>Edit</th>
+          </thead>
           <tbody>
             <% @my_collaborations.each do |collaboration| %>
               <tr> 
@@ -56,6 +62,9 @@
   <h1>All Public Wikis</h1>
   <table class="pure-table pure-table-bordered wiki-table">
     <tbody>
+      <thead>
+        <th>Public Wikis</th>
+      </thead>
       <% @public_wikis.each do |wiki| %>
         <tr> 
           <td><%  puts markdown wiki.title %><%= link_to (markdown wiki.title), wiki, :class => 'wiki-table-link' %></td>
