@@ -29,7 +29,7 @@
           </tbody>
         </table>
       <% else %>
-        <p>You haven't written any wikis yet. Make one of your own, click the 'New wiki' button below!</p>
+        <p class="none-yet">You haven't written any wikis yet.<br /> Make one of your own, click the 'New wiki' button below!</p>
       <% end %>
 
       <p><%= button_to "New wiki", new_wiki_path, :id => "new_wiki_button", :class => "pure-button", :method => :get %></p>
@@ -48,7 +48,7 @@
           </tbody>
         </table>
       <% else %>
-        <p>You aren't collaborating on any wikis. </p>
+        <p class="none-yet">You aren't collaborating on any wikis. </p>
       <% end %>
     </div>
   <% end %>

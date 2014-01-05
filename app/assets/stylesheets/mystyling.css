@@ -214,6 +214,11 @@ banner {
 .sign-up-later-area a:hover {color:#0D777D;}  /* mouse over link */
 .sign-up-later-area a:active {color:#000000;}  /* selected link */
 
+.none-yet {
+    font-size: 90%;
+    font-style: italic;
+    color:#717171;
+}
 
 .debug {
     border: 1px solid red;
